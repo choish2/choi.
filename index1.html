@@ -22,7 +22,7 @@
         align-items: center;
         }
 
-        .swiper-slide img {
+        .mySwiper > .swiper-slide img {
         display: block;
         width: 100%;
         height: 100%;
@@ -50,7 +50,7 @@
         .game-area {
             position: relative;
             width: 100%;
-            height: 760px;
+            height: 767px;
            
             overflow: hidden;
         }
@@ -160,15 +160,97 @@
         .exit
         {position: absolute;top: 10px;right: 10px;;z-index: 1;;}
         .exit .close{font-size: 40px;cursor: pointer;}
+        .baro_box
+        {display: flex;;gap: 15px;font-size: 20px;height: 5vh;}
+        .baro_box a
+        {display: flex;width: 30%;align-items: center;justify-content: center;height: 100%;background:  #191E46;border-radius: 20px;}
+        
+        
+        /* 팝 업 시 작*/
+        .popup3{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 10px solid #000;
+            display: none;
+            z-index: 1;
+            width: 90%;
+            height: 80%;
+
+        }
+        .title{
+            height: 5vh;
+            display: flex;align-items: center;gap: 10px ;
+        }
+            .title a{
+            display: flex;align-items: center;justify-content: center;
+            width: 150px;height: 100%;background:#fff;
+        }
+            .small{
+            width: 120px !important;
+        }
+        .mySwiper3,.mySwiper2{
+        width: 100%;
+        height: 92%;
+        display: flex;
+        background: #e1e1e1;
+              
+        }
+
+        .mySwiper2 .swiper-slide,.mySwiper3 .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        height: 95%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+            background: transparent;
+        }
+
+        .mySwiper3 .swiper-slide img
+        {
+        display: block;
+        margin-top: 5%;
+        height: 100%;
+        background-size: cover;  
+        }
+        .mySwiper2 .swiper-slide img
+        {
+        display: block;
+        margin-top: 5%;
+        height: 100%;
+        
+        }
+        .speed
+        {position: absolute;left: 20px;top: 40%;display: flex;align-items: center;flex-direction: column;justify-content: center;transform: translatey(-50%);z-index: 1;}
+        .stitle
+        {text-align: center;;background: #fff;width: 100%;height: 50px;display: flex;align-items: center;justify-content: center;}
     </style>
 </head>
 <body>
+    <div class="speed" style="display: none;">
+        <a href="#" class="up"><img src="img/up.png" alt=""></a>
+        <a href="#" class="down"><img src="img/down.png" alt=""></a>
+    </div>
     <div class="loading" id="loading">
         <h1>로딩 중...</h1>
     </div>
 
     <ul class="top_menu">
-        <li>sohyeon X 1</li>
+        <li class="baro_box">
+            <a href="#" class="webb">
+                웹
+            </a>
+            <a href="#" class="banner">
+                배너/팝업
+            </a>
+            <a href="#" class="s-kit">
+                속도조절
+            </a>
+        </li>
         <li class="coin_box">
             <figure><img src="img/coin.png" alt=""> X 27</figure>
         </li>
@@ -202,7 +284,7 @@
                         </h2>   
                         <figure><img src="img/frame.png" alt="">
                                 <span>
-                                    <a href="https://choish2.github.io/Dr.g/">
+                                    <a href="https://choish2.github.io/Dr.g/" target="_blank">
                                         <img src="img/웹/닥터지_1.jpeg" alt="">
                                     </a>
                                 </span>
@@ -222,7 +304,7 @@
                         </h2>   
                         <figure class="easop" style="background-color: #DAC4A8;"><img src="img/frame.png" alt="">
                                 <span>
-                                    <a href="https://choish2.github.io/aesop/">
+                                    <a href="https://choish2.github.io/aesop/" target="_blank">
                                         <img src="img/웹/aesop.jpeg" alt="">
                                     </a>
                                 </span>
@@ -241,7 +323,7 @@
                         </h2>   
                         <figure class="easop" style="background-color: #cdcdcd;"><img src="img/frame.png" alt="">
                                 <span>
-                                    <a href="https://choish2.github.io/nike/">
+                                    <a href="https://choish2.github.io/nike/" target="_blank">
                                         <img src="img/웹/나이키.png" alt="">
                                     </a>
                                 </span>
@@ -261,7 +343,7 @@
                         </h2>   
                         <figure  style="background-color: #FFF5E9"><img src="img/frame.png" alt="">
                                 <span>
-                                    <a href="https://choish2.github.io/inhyeon/">
+                                    <a href="https://choish2.github.io/inhyeon/" target="_blank">
                                         <img src="img/웹/인현수라간.jpeg" alt="">
                                     </a>
                                 </span>
@@ -281,7 +363,7 @@
                         </h2>   
                         <figure style="background-color: #C0D8F2;"><img src="img/frame.png" alt="">
                                 <span>
-                                    <a href="https://choish2.github.io/inhyeon/">
+                                    <a href="https://choish2.github.io/inhyeon/" target="_blank">
                                         <img src="img/웹/알레르망_1.jpeg" alt="">
                                     </a>
                                 </span>
@@ -300,7 +382,7 @@
                         </h2>   
                         <figure style="background-color: #A93439;"><img src="img/frame.png" alt="">
                                 <span>
-                                    <a href="https://choish2.github.io/hosp/">
+                                    <a href="https://choish2.github.io/allerman/index.html" target="_blank">
                                         <img src="img/웹/리더스동물의료원.jpeg" alt="">
                                     </a>
                                 </span>
@@ -322,7 +404,7 @@
                         </h2>   
                         <figure style="background-color: #FFD400;"><img src="img/frame.png" alt="">
                                 <span>
-                                    <a href="https://choish2.github.io/momm/">
+                                    <a href="https://choish2.github.io/momm/" target="_blank">
                                         <img src="img/웹/크몽_1.jpeg" alt="">
                                     </a>
                                 </span>
@@ -344,7 +426,7 @@
                         </h2>   
                         <figure style="background-color: #fafafa;"><img src="img/frame.png" alt="">
                                 <span>
-                                    <a href="https://choish2.github.io/news/index.html">
+                                    <a href="https://choish2.github.io/news/index.html" target="_blank">
                                         <img src="img/웹/연합뉴스_1.jpeg" alt="">
                                     </a>
                                 </span>
@@ -365,7 +447,7 @@
                         </h2>   
                         <figure style="background-color:#3e3e3e;"><img src="img/frame.png" alt="">
                                 <span>
-                                    <a href="https://choish2.github.io/casetify/index.html">
+                                    <a href="https://choish2.github.io/casetify/index.html" target="_blank">
                                         <img src="img/웹/티파이_2.jpeg" alt="">
                                     </a>
                                 </span>
@@ -391,12 +473,89 @@
                         close
                         </span>
                 </div>
-              </div>
-            
-            
-                    
-            
+              </div>              
+              
         </div>
+        
+        <div class="popup3" style="display: none;">
+            <div class="title">
+                <a href="#" class="pop2" style="background-color: #e1e1e1;">팝업/카드뉴스</a>
+                <a href="#" class="banner2">배너</a>
+            </div>
+            <div class="swiper mySwiper3" style="display: none;">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide ">
+                    <img src="img/popup/pop1.png" alt="">
+                  </div>
+                  <div class="swiper-slide ">
+                    <img src="img/popup/pop2.png" alt="">
+                  </div>
+                  <div class="swiper-slide ">
+                    <img src="img/popup/pop3.png" alt="">
+                  </div>
+                  <div class="swiper-slide  ">
+                    <img src="img/popup/pop4.png" alt="">
+                  </div>
+                  <div class="swiper-slide" >
+                    <img src="img/popup/pop5.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="img/popup/pop6.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="img/popup/pop7.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="img/popup/pop8.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="img/popup/pop9.png" alt="">
+                  </div>
+                  <div class="swiper-slide">꾸준히 추가중입니다^^</div>
+                  <div class="swiper-slide">꾸준히 추가중입니다^^</div>
+                </div>
+                <div class="swiper-scrollbar"></div>
+              </div>
+            <div class="swiper mySwiper2" style="display: none;">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide small">
+                    <img src="img/banner/banner1.png" alt="">
+                  </div>
+                  <div class="swiper-slide small">
+                    <img src="img/banner/banner2.png" alt="">
+                  </div>
+                  <div class="swiper-slide small">
+                    <img src="img/banner/banner3.png" alt="">
+                  </div>
+                  <div class="swiper-slide small">
+                    <img src="img/banner/banner4.png" alt="">
+                  </div>
+                  <div class="swiper-slide" class="large">
+                    <img src="img/banner/banner5.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="img/banner/banner6.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="img/banner/banner7.jpg" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="img/banner/banner8.png" alt="">
+                  </div>
+                  <div class="swiper-slide">꾸준히 추가중입니다^^</div>
+                  <div class="swiper-slide">꾸준히 추가중입니다^^</div>
+                </div>
+                <div class="swiper-scrollbar"></div>
+              </div>
+
+         
+              <div class="exit">
+                <span class="material-symbols-outlined close">close</span>
+            </div>
+        </div>
+        </div>
+        
+        
     </div>
 
     <!-- jQuery 라이브러리 -->
@@ -428,13 +587,28 @@
                 height: 135,
                 velocityY: 0,
                 isJumping: false,
-                speed: 2.5,
+                speed: 5,
                 gravity: 1.5,
                 maxFallSpeed: 10,
                 jumpStrength: 20,
                 facingRight: true
             };
+            
+            $('.up').click(function(e) {
+                e.preventDefault(); // 기본 링크 동작 방지
+                if (character.speed < 10) {
+                    character.speed = Math.min(character.speed + 0.5, 10); // speed 증가
+                    console.log('Current speed:', character.speed);
+                }
+            });
 
+            $('.down').click(function(e) {
+                e.preventDefault(); // 기본 링크 동작 방지
+                if (character.speed > 2.5) {
+                    character.speed = Math.max(character.speed - 0.5, 2.5); // speed 감소
+                    console.log('Current speed:', character.speed);
+                }
+        });
             var keys = {
                 left: false,
                 right: false,
@@ -636,6 +810,36 @@
             prevEl: ".swiper-button-prev",
           },
         });
+        
       </script>
+      <script>
+        var swiper = new Swiper(".mySwiper3", {
+                autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+            },
+          scrollbar: {
+            el: ".swiper-scrollbar",
+            hide: true,
+          },
+          slidesPerView: 3,
+          spaceBetween: 30,
+        });
+        
+    </script>
+     <script>
+        var swiper2 = new Swiper(".mySwiper2", {
+                autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+            },
+          scrollbar: {
+            el: ".swiper-scrollbar",
+            hide: true,
+          },
+          slidesPerView: 6,
+          spaceBetween: 30,
+        });
+    </script>
 </body>
 </html>
