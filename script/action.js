@@ -9,3 +9,17 @@ $('.banner').click(function(){
     $('.mySwiper').hide();
     return false;
 })
+
+$('.exit').click(function(){
+    $('.popup').fadeOut('fast');
+
+})
+
+$(document).ready(function() {
+    $('.title p').click(function() {
+      $('.title').fadeOut()
+     
+      $('.game-area').show()
+    })
+    });
+    

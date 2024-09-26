@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/font.css">
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/mario.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
@@ -93,16 +94,19 @@
             padding: 20px;
             background: rgba(255, 255, 255, 0.8);
             border: 10px solid #000;
-            display: block;
+            display: none;
             z-index: 1;
             width: 90%;
             height: 80%;
+
         }
         .item {
             width: 100px;
             height: 100px;
             background-image: url(img/star.png);
         }
+        .endd
+        {height: 540px;}
         .exit {
             position: absolute;
             top: 10px;
@@ -154,7 +158,7 @@
         .mySwiper2 img {
         
         margin-top: 10%;
-        width: 100%;
+       
         height: 100%;
         background-size: cover;
         }
@@ -182,6 +186,15 @@
         </li>
         <li class="reset"><a href="index.html">처음으로</a></li>
     </ul>
+    <div class="cloud_box">
+        <figure class="first">
+            <img src="img/cloud1.png" alt="">
+        </figure>
+        <figure class="last">
+            <img src="img/cloud2.png" alt="">
+        </figure>
+  
+    </div>
     <div class="game-area" id="gameArea">
         <div class="character" id="character"></div>
         <div class="character2" id="character2"></div> <!-- 두 번째 캐릭터 추가 -->
@@ -190,8 +203,8 @@
         <div class="stairs" style="left: 730px; bottom: 180px;"></div>
         <div class="stairs" style="left: 820px; bottom: 270px;"></div>
         <div class="stairs" style="left: 910px; bottom: 360px;"></div>
-        <div class="stairs" style="left: 1020px; bottom: 450px;"></div>
-        <div class="item" id="item" style="left: 1005px; bottom: 550px;"></div>
+        <div class="stairs endd" style="left: 1020px; bottom: 0px;"></div>
+        <div class="item" id="item" style="left: 1005px; bottom: 560px;"></div>
         <div class="popup" id="popup">
             <div class="title">
                 <a href="#" class="pop">팝업/카드뉴스</a>
@@ -276,8 +289,14 @@
     <script src="script/action.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        
+           const coinSound = new Audio('audio/coin.mp3');
+            const jumpSound = new Audio('audio/jump.mp3');
+            const marioSound = new Audio('audio/mario_theme.mp3');
+            const pipeSound = new Audio('audio/pipe.mp3');
+            coinSound.play();
+            marioSound.play();
         $(document).ready(function() {
+           
             setTimeout(function() {
                 $('#loading').fadeOut();
             }, 1500);
@@ -296,7 +315,7 @@
                 height: 117,
                 velocityY: 0,
                 isJumping: false,
-                speed: 5,
+                speed: 2.5,
                 gravity: 1.5,
                 maxFallSpeed: 10,
                 jumpStrength: 20,
@@ -448,6 +467,7 @@
                     if (character.y === 0 || onStair(character.y)) {
                         character.isJumping = true;
                         character.velocityY = character.jumpStrength;
+                        jumpSound.play();
                     }
                 }
 

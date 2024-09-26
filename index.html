@@ -18,7 +18,6 @@
             position: relative;
             width: 100%;
             height: 760px;
-          
             overflow: hidden;
         }
         .character {
@@ -37,6 +36,14 @@
             height: 90px;
             background-color: transparent;
         }
+        .title p {
+            animation: act 3s infinite;
+        }
+        @keyframes act {
+            0%{opacity: 1;}
+            50%{opacity: 0.1;}
+            100%{opacity: 1;}
+        }      
     </style>
 </head>
 <body>
@@ -47,6 +54,23 @@
         </li>
         <li class="reset"><a href="index.html">처음으로</a></li>
     </ul>
+    <ul class="title">
+        <li>SOHYEON<br>
+            PORTFOLIO
+            <p>Insertcoin</p>
+        </li>
+        <li class="before">SOHYEON<br>
+            PORTFOLIO
+        </li>
+    </ul>
+    <div class="cloud_box">
+        <figure class="first">
+            <img src="img/cloud1.png" alt="">
+        </figure>
+        <figure class="last">
+            <img src="img/cloud2.png" alt="">
+        </figure>
+    </div>
     <div class="game-area" id="gameArea">
         <div class="character" id="character"></div>
         <div class="stairs pipe" style="left: 1500px; bottom: 10px;">
@@ -58,6 +82,17 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
+            const coinSound = new Audio('audio/coin.mp3');
+            const jumpSound = new Audio('audio/jump.mp3');
+            const marioSound = new Audio('audio/mario_theme.mp3');
+            const pipeSound = new Audio('audio/pipe.mp3');
+
+            $('.title p').click(function () {
+                $('.title').fadeOut();
+                coinSound.play();
+                marioSound.play();
+            });
+
             var $character = $('#character');
             var $gameArea = $('#gameArea');
             var $stairs = $('.stairs');
@@ -69,7 +104,7 @@
                 height: 135,
                 velocityY: 0,
                 isJumping: false,
-                speed: 5,
+                speed: 2.5,
                 gravity: 1.5,
                 maxFallSpeed: 10,
                 jumpStrength: 20,
@@ -79,7 +114,8 @@
             var keys = {
                 left: false,
                 right: false,
-                up: false
+                up: false,
+                down: false
             };
 
             var stairs = [];
@@ -113,7 +149,13 @@
                         keys.up = true;
                         break;
                     case "ArrowDown":
-                        window.location.href = "index1.html"; // 이동할 페이지의 URL로 수정
+                        if (onPipe(character.y)) {
+                            pipeSound.play();
+                            setTimeout(function() {
+                              
+                                window.location.href = 'index1.html'; // 이동할 페이지의 URL로 변경
+                            }, 700); // 1초 후에 페이지 이동
+                        }
                         break;
                 }
             });
@@ -172,6 +214,20 @@
                 return false;
             }
 
+            function onPipe(y) {
+                var pipe = {
+                    x: parseInt($('.pipe').css('left')),
+                    y: parseInt($('.pipe').css('bottom')),
+                    width: $('.pipe').width(),
+                    height: $('.pipe').height()
+                };
+
+                return character.x + character.width > pipe.x &&
+                       character.x < pipe.x + pipe.width &&
+                       y <= pipe.y + pipe.height && 
+                       y >= pipe.y; // 파이프의 y 범위에 있는지 확인
+            }
+
             function gameLoop() {
                 var newX = character.x;
                 var newY = character.y;
@@ -193,6 +249,7 @@
                     if (character.y === 0 || onStair(character.y)) {
                         character.isJumping = true;
                         character.velocityY = character.jumpStrength;
+                        jumpSound.play();
                     }
                 }
 
@@ -216,6 +273,7 @@
                             character.velocityY = 0;
                         }
                     }
+
                     character.y = newY;
                 } else {
                     if (!onStair(newY) && character.y > 0) {

@@ -174,7 +174,15 @@
         </li>
         <li class="reset"><a href="index.html">처음으로</a></li>
     </ul>
-    
+    <div class="cloud_box">
+        <figure class="first">
+            <img src="img/cloud1.png" alt="">
+        </figure>
+        <figure class="last">
+            <img src="img/cloud2.png" alt="">
+        </figure>
+  
+    </div>
     <div class="game-area" id="gameArea">
         <div class="character" id="character"></div>
         <div class="stairs" style="left: 400px; bottom: 230px;">
@@ -395,12 +403,19 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script/action.js"></script>
     <script>
+         const coinSound = new Audio('audio/coin.mp3');
+            const jumpSound = new Audio('audio/jump.mp3');
+            const marioSound = new Audio('audio/mario_theme.mp3');
+            const pipeSound = new Audio('audio/pipe.mp3');
+            coinSound.play();
+            marioSound.play();
         $(document).ready(function() {
+            
             // 로딩 창 3초 후에 사라지도록 설정
             setTimeout(function() {
                 $('#loading').fadeOut();
             }, 1500);
-
+           
             var $character = $('#character');
             var $gameArea = $('#gameArea');
             var $popup = $('#popup');
@@ -413,7 +428,7 @@
                 height: 135,
                 velocityY: 0,
                 isJumping: false,
-                speed: 5,
+                speed: 2.5,
                 gravity: 1.5,
                 maxFallSpeed: 10,
                 jumpStrength: 20,
@@ -550,11 +565,15 @@
                     if (character.y === 0 || onPipe(character.y)) {
                         character.isJumping = true;
                         character.velocityY = character.jumpStrength;
+                        jumpSound.play();
                     }
                 }
 
                 if (keys.down && onPipe(character.y)) {
-                    window.location.href = "index2.html"; // 원하는 페이지로 이동
+                    pipeSound.play(); // 소리 재생
+                    setTimeout(function() {
+                        window.location.href = "index2.html"; 
+                    }, 700); 
                 }
 
                 if (character.isJumping) {

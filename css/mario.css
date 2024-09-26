@@ -94,7 +94,7 @@
     100% {left: 50%; top: 0%;}
 }
 
-.title {
+body > .title {
     font-size: 120px;
     text-align: center;
     width: 100%;
@@ -106,7 +106,7 @@
     font-family: 'DNFBitBitv2';
     color: #191E46;
 }
-.title p {
+body > .title p {
     font-size: 60px;
     font-family: 'DungGeunMo';
     color: #fff;
