@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <title>찾으시면 저를 뽑을 수 있는 엄청난 행운이..!</title>
+    <style>
+        .top_menu {
+            display: flex;
+            width: 100%;
+            margin: 0 auto;
+            justify-content: space-between;
+            font-size: 48px;
+            align-items: center;
+            color: #fff;
+            padding-top: 30px;
+        }
+        .top_menu li {
+            width: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .top_menu li a {
+            color: #fff;
+        }
+        .top_menu li figure {
+            width: auto;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .top_menu figure img {
+            height: 100%;
+        }
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-image: url(img/scene3.png);
+            width: 100%;
+        }
+        .game-area {    
+            position: relative;
+            width: 100%;
+            height: 760px;
+            overflow: hidden;
+        }
+        .character {
+            position: absolute;
+            width: 90px; 
+            height: 135px; 
+            background-image: url('img/mario.png'); 
+            background-size: cover; 
+            left: 50px;
+            bottom: 0;
+            transition: left 0.1s, transform 0.2s;
+        }
+        .character2 {
+            position: absolute;
+            width: 90px; 
+            height: 135px; 
+            background-image: url('img/princess.png'); 
+            background-size: cover; 
+            right: 100px; 
+            bottom: 0;
+            display: none; 
+        }
+        .stairs {
+            position: absolute;
+            width: 100px;
+            height: 90px;
+            background-color: transparent;
+        }
+        .item {
+            position: absolute;
+            width: 30px; 
+            height: 30px;
+            background-image: url('img/item.png'); 
+            background-size: cover;
+        }
+        .popup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 10px solid #000;
+            display: block;
+            z-index: 1;
+            width: 90%;
+            height: 80%;
+        }
+        .item {
+            width: 100px;
+            height: 100px;
+            background-image: url(img/star.png);
+        }
+        .exit {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1;
+            cursor: pointer;
+        }
+        .exit .close {
+            font-size: 40px;
+            cursor: pointer;
+        }
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color:#fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .mySwiper2,.swiper {
+        width: 100%;
+        height: 92%;
+        display: flex;
+        background: #fff;
+                
+        }
+
+        .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        height: 95%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        }
+
+        .swiper-slide img {
+        display: block;
+        margin-top: 10%;
+        height: 100%;
+        object-fit: cover;
+    }
+        .mySwiper2 img {
+        
+        margin-top: 10%;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        }
+        .title{
+        height: 5vh;
+        display: flex;align-items: center;gap: 10px ;
+    }
+        .title a{
+        display: flex;align-items: center;justify-content: center;
+        width: 150px;height: 100%;background:#fff;
+    }
+        .small{
+        width: 120px !important;
+    }
+    </style>
+</head>
+<body>
+    <div class="loading" id="loading">
+        <h1>로딩 중...</h1>
+    </div>
+    <ul class="top_menu">
+        <li>sohyeon X 1</li>
+        <li class="coin_box">
+            <figure><img src="img/coin.png" alt=""> X 27</figure>
+        </li>
+        <li class="reset"><a href="index.html">처음으로</a></li>
+    </ul>
+    <div class="game-area" id="gameArea">
+        <div class="character" id="character"></div>
+        <div class="character2" id="character2"></div> <!-- 두 번째 캐릭터 추가 -->
+        <div class="stairs" style="left: 530px; bottom: 0;"></div>
+        <div class="stairs" style="left: 635px; bottom: 90px;"></div>
+        <div class="stairs" style="left: 730px; bottom: 180px;"></div>
+        <div class="stairs" style="left: 820px; bottom: 270px;"></div>
+        <div class="stairs" style="left: 910px; bottom: 360px;"></div>
+        <div class="stairs" style="left: 1020px; bottom: 450px;"></div>
+        <div class="item" id="item" style="left: 1005px; bottom: 550px;"></div>
+        <div class="popup" id="popup">
+            <div class="title">
+                <a href="#" class="pop">팝업/카드뉴스</a>
+                <a href="#" class="banner">배너</a>
+            </div>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide ">
+                    <img src="img/popup/pop1.png" alt="">
+                  </div>
+                  <div class="swiper-slide ">
+                    <img src="img/popup/pop2.png" alt="">
+                  </div>
+                  <div class="swiper-slide ">
+                    <img src="img/popup/pop3.png" alt="">
+                  </div>
+                  <div class="swiper-slide  ">
+                    <img src="img/popup/pop4.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="img/popup/pop5.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="img/popup/pop6.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="img/popup/pop7.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="img/popup/pop8.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="img/popup/pop9.png" alt="">
+                  </div>
+                  <div class="swiper-slide">꾸준히 추가중입니다^^</div>
+                  <div class="swiper-slide">꾸준히 추가중입니다^^</div>
+                </div>
+                <div class="swiper-scrollbar"></div>
+              </div>
+
+
+              <div class="swiper mySwiper2" style="display: none;">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide small">
+                    <img src="img/banner/banner1.png" alt="">
+                  </div>
+                  <div class="swiper-slide small">
+                    <img src="img/banner/banner2.png" alt="">
+                  </div>
+                  <div class="swiper-slide small">
+                    <img src="img/banner/banner3.png" alt="">
+                  </div>
+                  <div class="swiper-slide small">
+                    <img src="img/banner/banner4.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="img/banner/banner5.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="img/banner/banner6.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="img/banner/banner7.jpg" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="img/banner/banner8.png" alt="">
+                  </div>
+                  <div class="swiper-slide">꾸준히 추가중입니다^^</div>
+                  <div class="swiper-slide">꾸준히 추가중입니다^^</div>
+                </div>
+                <div class="swiper-scrollbar"></div>
+              </div>
+
+            <div class="exit">
+                <span class="material-symbols-outlined close">close</span>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script/jquery-3.7.1.js"></script>
+    <script src="script/action.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('#loading').fadeOut();
+            }, 1500);
+            var $character = $('#character');
+            var $character2 = $('#character2'); // 두 번째 캐릭터 선택
+            var $gameArea = $('#gameArea');
+            var $stairs = $('.stairs');
+            var $item = $('#item');
+            var $popup = $('#popup');
+            var itemCollected = false; // 아이템 수집 상태 변수 추가
+            
+            var character = {
+                x: 50,
+                y: 0,
+                width: 90,
+                height: 117,
+                velocityY: 0,
+                isJumping: false,
+                speed: 5,
+                gravity: 1.5,
+                maxFallSpeed: 10,
+                jumpStrength: 20,
+                facingRight: true
+            };
+
+            var character2Visible = false; // 두 번째 캐릭터가 보이는지 여부
+            var keys = {
+                left: false,
+                right: false,
+                up: false
+            };
+
+            var stairs = [];
+            $stairs.each(function() {
+                var $this = $(this);
+                stairs.push({
+                    x: parseInt($this.css('left')),
+                    y: parseInt($this.css('bottom')),
+                    width: $this.width(),
+                    height: $this.height()
+                });
+            });
+
+            $(document).keydown(function(e) {
+                switch(e.key) {
+                    case "ArrowLeft":
+                        keys.left = true;
+                        break;
+                    case "ArrowRight":
+                        keys.right = true;
+                        break;
+                    case " ":
+                        keys.up = true;
+                        break;
+                }
+            });
+
+            $(document).keyup(function(e) {
+                switch(e.key) {
+                    case "ArrowLeft":
+                        keys.left = false;
+                        break;
+                    case "ArrowRight":
+                        keys.right = false;
+                        break;
+                    case " ":
+                        keys.up = false;
+                        break;
+                }
+            });
+
+            function checkCollision(newX, newY) {
+                var collision = false;
+                if (newX < 0 || newX + character.width > $gameArea.width()) {
+                    return true;
+                }
+
+                stairs.forEach(function(stair) {
+                    if (newX + character.width > stair.x && newX < stair.x + stair.width &&
+                        newY < stair.y + stair.height && newY + character.height > stair.y) {
+                        collision = true;
+                    }
+                });
+
+                return collision;
+            }
+
+            function onStair(newY) {
+                var onStair = false;
+                stairs.forEach(function(stair) {
+                    if (character.x + character.width > stair.x &&
+                        character.x < stair.x + stair.width &&
+                        newY === stair.y + stair.height) {
+                        onStair = true;
+                    }
+                });
+                return onStair;
+            }
+
+            function hitStairBelow(newX, newY) {
+                var hit = false;
+                stairs.forEach(function(stair) {
+                    if (character.x + character.width > stair.x &&
+                        character.x < stair.x + stair.width &&
+                        character.y >= stair.y + stair.height &&
+                        newY <= stair.y + stair.height) {
+                        hit = true;
+                        character.y = stair.y + stair.height;
+                        character.velocityY = 0;
+                        character.isJumping = false;
+                    }
+                });
+                return hit;
+            }
+
+            function checkItemCollision() {
+                var itemX = parseInt($item.css('left'));
+                var itemY = parseInt($item.css('bottom'));
+
+                if (!itemCollected && character.x + character.width > itemX && character.x < itemX + $item.width() &&
+                    character.y + character.height > itemY && character.y < itemY + $item.height()) {
+                    itemCollected = true; // 아이템을 수집했음을 표시
+                    return true;
+                }
+                return false;
+            }
+
+            function showPopup() {
+                $popup.fadeIn();
+            }
+
+            $('.exit').on('click', function() {
+                $popup.fadeOut(500);
+            });
+
+            function gameLoop() {
+                var newX = character.x;
+                var newY = character.y;
+
+                if (keys.left) {
+                    newX = character.x - character.speed;
+                    if (!checkCollision(newX, character.y)) {
+                        character.x = newX;
+                    }
+                    if (character.facingRight) {
+                        $character.css('transform', 'scaleX(-1)');
+                        character.facingRight = false;
+                    }
+                }
+                if (keys.right) {
+                    newX = character.x + character.speed;
+                    if (!checkCollision(newX, character.y)) {
+                        character.x = newX;
+                    }
+                    if (!character.facingRight) {
+                        $character.css('transform', 'scaleX(1)');
+                        character.facingRight = true;
+                    }
+                }
+
+                // 두 번째 캐릭터 표시
+                if (character.x >= 1500 && !character2Visible) {
+                    character2Visible = true;
+                    $character2.show()
+                }
+
+                if (keys.up && !character.isJumping) {
+                    if (character.y === 0 || onStair(character.y)) {
+                        character.isJumping = true;
+                        character.velocityY = character.jumpStrength;
+                    }
+                }
+
+                if (character.isJumping) {
+                    newY = character.y + character.velocityY;
+                    character.velocityY -= character.gravity;
+
+                    if (newY <= 0) {
+                        newY = 0;
+                        character.isJumping = false;
+                        character.velocityY = 0;
+                    }
+
+                    stairs.forEach(function(stair) {
+                        if (character.x + character.width > stair.x &&
+                            character.x < stair.x + stair.width &&
+                            newY <= stair.y + stair.height &&
+                            character.y >= stair.y + stair.height) {
+                            newY = stair.y + stair.height;
+                            character.isJumping = false;
+                            character.velocityY = 0;
+                        }
+                    });
+
+                    character.y = newY;
+                } else {
+                    if (!onStair(newY) && character.y > 0) {
+                        character.velocityY = Math.min(character.velocityY + character.gravity, character.maxFallSpeed);
+                        newY = character.y - character.velocityY;
+
+                        if (hitStairBelow(newX, newY)) {
+                            newY = character.y;
+                        } else {
+                            character.y = newY;
+                        }
+
+                        if (character.y < 0) character.y = 0;
+                    } else {
+                        character.velocityY = 0;
+                    }
+                }
+
+                $character.css({
+                    left: character.x + 'px',
+                    bottom: character.y + 'px'
+                });
+
+                // 아이템 먹기 체크
+                if (checkItemCollision()) {
+                    $item.hide(); 
+                    showPopup(); 
+                }
+
+                requestAnimationFrame(gameLoop);
+            }
+
+            gameLoop();
+        });
+    </script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+                autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+            },
+          scrollbar: {
+            el: ".swiper-scrollbar",
+            hide: true,
+          },
+          slidesPerView: 3,
+          spaceBetween: 30,
+        });
+        
+    </script>
+    <script>
+        var swiper2 = new Swiper(".mySwiper2", {
+                autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+            },
+          scrollbar: {
+            el: ".swiper-scrollbar",
+            hide: true,
+          },
+          slidesPerView: 6,
+          spaceBetween: 30,
+        });
+    </script>
+</body>
+</html>

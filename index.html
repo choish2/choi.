@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/mario.css">
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <title>최소현 마-리오</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-image: url(img/scene1.png);
+            width: 100%;
+        }
+        .game-area {    
+            position: relative;
+            width: 100%;
+            height: 760px;
+          
+            overflow: hidden;
+        }
+        .character {
+            position: absolute;
+            width: 90px; 
+            height: 135px; 
+            background-image: url('img/mario.png'); 
+            background-size: cover; 
+            left: 50px;
+            bottom: 0;
+            transition: left 0.1s, transform 0.2s;
+        }
+        .stairs {
+            position: absolute;
+            width: 100px;
+            height: 90px;
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <ul class="top_menu">
+        <li>sohyeon X 1</li>
+        <li class="coin_box">
+            <figure><img src="img/coin.png" alt=""> X 27</figure>
+        </li>
+        <li class="reset"><a href="index.html">처음으로</a></li>
+    </ul>
+    <div class="game-area" id="gameArea">
+        <div class="character" id="character"></div>
+        <div class="stairs pipe" style="left: 1500px; bottom: 10px;">
+            <img src="img/pipe.png" alt="">
+        </div>
+        <div class="stairs" style="left: 630px; bottom: 9000px;"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var $character = $('#character');
+            var $gameArea = $('#gameArea');
+            var $stairs = $('.stairs');
+
+            var character = {   
+                x: 50,
+                y: 0,
+                width: 90,
+                height: 135,
+                velocityY: 0,
+                isJumping: false,
+                speed: 5,
+                gravity: 1.5,
+                maxFallSpeed: 10,
+                jumpStrength: 20,
+                facingRight: true
+            };
+
+            var keys = {
+                left: false,
+                right: false,
+                up: false
+            };
+
+            var stairs = [];
+            $stairs.each(function() {
+                var $this = $(this);
+                stairs.push({
+                    x: parseInt($this.css('left')),
+                    y: parseInt($this.css('bottom')),
+                    width: $this.width(),
+                    height: $this.height()
+                });
+            });
+
+            $(document).keydown(function(e) {
+                switch(e.key) {
+                    case "ArrowLeft":
+                        keys.left = true;
+                        if (character.facingRight) {
+                            $character.css('transform', 'scaleX(-1)');
+                            character.facingRight = false;
+                        }
+                        break;
+                    case "ArrowRight":
+                        keys.right = true;
+                        if (!character.facingRight) {
+                            $character.css('transform', 'scaleX(1)');
+                            character.facingRight = true;
+                        }
+                        break;
+                    case " ":
+                        keys.up = true;
+                        break;
+                    case "ArrowDown":
+                        window.location.href = "index1.html"; // 이동할 페이지의 URL로 수정
+                        break;
+                }
+            });
+
+            $(document).keyup(function(e) {
+                switch(e.key) {
+                    case "ArrowLeft":
+                        keys.left = false;
+                        break;
+                    case "ArrowRight":
+                        keys.right = false;
+                        break;
+                    case " ":
+                        keys.up = false;
+                        break;
+                }
+            });
+
+            function checkCollision(newX, newY) {
+                if (newX < 0 || newX + character.width > $gameArea.width()) {
+                    return true;
+                }
+
+                for (var stair of stairs) {
+                    if (newX + character.width > stair.x && newX < stair.x + stair.width &&
+                        newY < stair.y + stair.height && newY + character.height > stair.y) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            function onStair(newY) {
+                for (var stair of stairs) {
+                    if (character.x + character.width > stair.x &&
+                        character.x < stair.x + stair.width &&
+                        newY === stair.y + stair.height) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            function hitStairBelow(newX, newY) {
+                for (var stair of stairs) {
+                    if (character.x + character.width > stair.x &&
+                        character.x < stair.x + stair.width &&
+                        character.y >= stair.y + stair.height &&
+                        newY <= stair.y + stair.height) {
+                        character.y = stair.y + stair.height;
+                        character.velocityY = 0;
+                        character.isJumping = false;
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            function gameLoop() {
+                var newX = character.x;
+                var newY = character.y;
+
+                if (keys.left) {
+                    newX -= character.speed;
+                    if (!checkCollision(newX, character.y)) {
+                        character.x = newX;
+                    }
+                }
+                if (keys.right) {
+                    newX += character.speed;
+                    if (!checkCollision(newX, character.y)) {
+                        character.x = newX;
+                    }
+                }
+
+                if (keys.up && !character.isJumping) {
+                    if (character.y === 0 || onStair(character.y)) {
+                        character.isJumping = true;
+                        character.velocityY = character.jumpStrength;
+                    }
+                }
+
+                if (character.isJumping) {
+                    newY += character.velocityY;
+                    character.velocityY -= character.gravity;
+
+                    if (newY <= 0) {
+                        newY = 0;
+                        character.isJumping = false;
+                        character.velocityY = 0;
+                    }
+
+                    for (var stair of stairs) {
+                        if (character.x + character.width > stair.x &&
+                            character.x < stair.x + stair.width &&
+                            newY <= stair.y + stair.height &&
+                            character.y >= stair.y + stair.height) {
+                            newY = stair.y + stair.height;
+                            character.isJumping = false;
+                            character.velocityY = 0;
+                        }
+                    }
+                    character.y = newY;
+                } else {
+                    if (!onStair(newY) && character.y > 0) {
+                        character.velocityY = Math.min(character.velocityY + character.gravity, character.maxFallSpeed);
+                        newY -= character.velocityY;
+
+                        if (hitStairBelow(newX, newY)) {
+                            newY = character.y;
+                        } else {
+                            character.y = newY;
+                        }
+
+                        if (character.y < 0) character.y = 0;
+                    } else {
+                        character.velocityY = 0;
+                    }
+                }
+
+                $character.css({
+                    left: character.x + 'px',
+                    bottom: character.y + 'px'
+                });
+
+                requestAnimationFrame(gameLoop);
+            }
+
+            gameLoop();
+        });
+    </script>
+</body>
+</html>
