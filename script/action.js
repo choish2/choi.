@@ -62,6 +62,8 @@ $(document).ready(function() {
         } else {
             $('.speed').fadeIn('fast');
         }
+
+        return false;
     });
     
     $('.banner2').click(function(){
