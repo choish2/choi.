@@ -14,7 +14,7 @@
             margin: 0;
             overflow: hidden;
             background-image: url(img/scene1.png);
-            width: 100%;
+            max-width: 1920px;
         }
         .game-area {    
             position: relative;
@@ -177,7 +177,75 @@
         {position: absolute;left: 20px;top: 40%;display: flex;align-items: center;flex-direction: column;justify-content: center;transform: translatey(-50%);z-index: 1;}
         .stitle
         {text-align: center;;background: #fff;width: 100%;height: 50px;display: flex;align-items: center;justify-content: center;}
-    </style>
+        .small{max-width: 160px;}
+        
+        
+        
+        @media screen and (max-width: 1080px) {
+            body{background-size: cover;}
+            .top_menu{  
+                font-size: var(--def4)
+            }
+            body > .title
+            {
+                max-width: 90%;
+                margin: auto;
+                font-size: var(--h1);
+            }    
+            body > .title .before {
+                top: 30,5%;
+            }
+            body > .title p{font-size: var(--def3);}
+            .top_menu li{width: 30%;}   
+            .top_menu .baro_box{width: 36%;gap: 3px;font-size: var(--def);}
+            .coin_box figure img{height: 50%;}
+            .game-area{max-height: 817px;}
+            .pipe{ width: 80px; height: 60px}
+            .pipe img{background-size: cover;width: 100%;}
+            .popup .wrap h2{font-size:var(--def4);margin-bottom: 1.5vh;}
+            .info p{font-size: var(--def);}
+            .info p:nth-child(2){font-size: var(--def);width: 90%;}
+            .swiper-button-prev img,
+            .swiper-button-next img
+            {background-size: cover;width: 50px;height: 50px;}
+            .swiper-button-next:after{display: none;}
+            .character{width: 70px;height: 100px;background-size: cover;;}
+            .swiper-slide .wrap a{width: 80% ; height: 100%;}
+            .swiper-slide .wrap a img{max-width: 80%;z-index: 9999;}
+
+            .swiper-slide .wrap figure > img{width: 100%;display: flex;align-items: center;justify-content: center;}
+            
+            .swiper-slide .wrap figure span{width: 100%;display: flex;align-items: center;justify-content: center;}
+            .info{margin:3vh 0;height: auto;}
+            .mySwiper2 .swiper-slide{width: 100%;}
+            .mySwiper3 .swiper-slide{width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;;}    
+            .mySwiper3 .swiper-slide img{background-size: cover ;height: 80%;}
+        }
+          
+                    
+
+        @media screen and (max-width: 600px) {
+            .top_menu{
+                font-size: var(--def2)
+            }
+            body > .title
+            {
+                max-width: 90%;
+                margin: auto;
+                font-size: var(--def3);
+            }    
+            body > .title .before {
+                top: 32.5%;
+                margin-top: 10px;
+            }
+            body > .title p{font-size: var(--def2);}
+            .top_menu li{width: 30%;}   
+            .top_menu .baro_box{width: 33%;gap: 3px;}
+            .coin_box figure img{height: 50%;}
+        }
+
+        
+   </style>
 </head>
 <body>
     <div class="speed" style="display: none;">
@@ -187,18 +255,18 @@
     <ul class="top_menu">
         <li class="baro_box" style="display: none;">
             <a href="#" class="webb">
-                웹
+                <i class="fa-brands fa-internet-explorer"></i>
             </a>
             <a href="#" class="banner">
-                배너/팝업
+                <i class="fa-regular fa-folder-open"></i>   
             </a>
             <a href="#" class="s-kit">
-                속도조절
+                <i class="fa-solid fa-gauge"></i>
             </a>
             
         </li>
         <li class="coin_box">
-            <figure><img src="img/coin.png" alt=""> X 27</figure>
+            <figure><img src="img/coin.png" alt=""> X 28</figure>
         </li>
         <li class="reset"><a href="index.html">처음으로</a></li>
     </ul>
@@ -221,7 +289,7 @@
     </div>
     <div class="game-area" id="gameArea">
         <div class="character" id="character"></div>
-        <div class="stairs pipe" style="left: 1500px; bottom: 10px;">
+        <div class="stairs pipe" style="left: 80%; bottom: 10px;">
             <img src="img/pipe.png" alt="">
         </div>
         <div class="stairs" style="left: 630px; bottom: 9000px;"></div>
@@ -463,7 +531,7 @@
                     <img src="img/popup/pop9.png" alt="">
                   </div>
                   <div class="swiper-slide">
-                    <img src="img/popup/pop10.png" alt="">
+                    <img src="img/popup/pop13.png" alt="">
                   </div>
                   <div class="swiper-slide">
                     <img src="img/popup/pop6.png" alt="">
@@ -471,7 +539,10 @@
                   <div class="swiper-slide">
                     <img src="img/popup/pop7.png" alt="">
                   </div>
-                  
+                  <div class="swiper-slide">
+                    
+                  </div>
+
                 </div>
                 <div class="swiper-scrollbar"></div>
               </div>
@@ -495,20 +566,26 @@
                   <div class="swiper-slide small">
                     <img src="img/banner/banner10.png" alt="">
                   </div>
-                  <div class="swiper-slide" class="large">
+                  
+                  <div class="swiper-slide small">
+                    <img src="img/banner/banner11.png" alt="">
+                  </div>
+                  <div class="swiper-slide small">
+                    <img src="img/banner/banner12.jpg" alt="">               
+                  </div>
+                  <div class="swiper-slide large">
                     <img src="img/banner/banner5.png" alt="">
                   </div>
-                  <div class="swiper-slide">
+                  <div class="swiper-slide large">
                     <img src="img/banner/banner6.png" alt="">
                   </div>
-                  <div class="swiper-slide">
+                  <div class="swiper-slide large">
                     <img src="img/banner/banner7.jpg" alt="">
                   </div>
-                  <div class="swiper-slide">
+                  <div class="swiper-slide large">
                     <img src="img/banner/banner8.png" alt="">
                   </div>
-                  <div class="swiper-slide">꾸준히 추가중입니다^^</div>
-                  <div class="swiper-slide">꾸준히 추가중입니다^^</div>
+                  
                 </div>
                 <div class="swiper-scrollbar"></div>
               </div>
@@ -520,8 +597,9 @@
         </div>  
     
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script/jquery-3.7.1.js"></script>
     <script src="script/action.js"></script>
+    <script src="https://kit.fontawesome.com/f3c9d07c5d.js"></script>
     <script>
         $(document).ready(function() {
             const coinSound = new Audio('audio/coin.mp3');
@@ -762,8 +840,12 @@
         });
     </script>
    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-   
+ 
    <script>
+    window.addEventListener("resize", function() {
+          swiper.update();
+          swiper2.update();
+            });
     var swiper = new Swiper(".mySwiper", {
       navigation: {
         nextEl: ".swiper-button-next",
@@ -772,34 +854,89 @@
     });
     
   </script>
-  <script>
-    var swiper = new Swiper(".mySwiper3", {
-            autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
+    <script>
+      
+        var swiper3;
+
+        function initializeSwiper3() {
+            swiper3 = new Swiper(".mySwiper3", {
+                autoplay: {
+                    delay: 2500,  
+                    disableOnInteraction: false,
+                },
+                scrollbar: {
+                    el: ".swiper-scrollbar",  
+                    hide: true,
+                },
+                slidesPerView: 3,  
+                spaceBetween: 30, 
+            });
+
+          
+            adjustSwiper3();
+        }
+
+       
+        function adjustSwiper3() {
+            if (!swiper3) return;  
+
+            var screenWidth = window.innerWidth;
+
+            
+            if (screenWidth <= 1080) {
+                swiper3.params.slidesPerView = 1;  
+            } else {
+                swiper3.params.slidesPerView = 3; 
+            }
+
+
+            swiper3.update();
+        }
+
+       
+        window.addEventListener('resize', adjustSwiper3);
+
+      
+        window.addEventListener('load', initializeSwiper3);
+</script>
+
+    <script>
+        var swiper2 = new Swiper(".mySwiper2", {
+         autoplay: {
+                delay: 2500,  
+                disableOnInteraction: false,                },
+            
+        scrollbar: {
+            el: ".swiper-scrollbar",
+            hide: true,
         },
-      scrollbar: {
-        el: ".swiper-scrollbar",
-        hide: true,
-      },
-      slidesPerView: 3,
-      spaceBetween: 30,
-    });
+        slidesPerView: 6,
+        spaceBetween: 30,
+
+
+        
+        });
+        function adjustSwiper() {
+            var screenWidth = window.innerWidth;
+            
     
+            if (screenWidth <= 787) {
+                swiper2.params.slidesPerView = 2;  
+            } else {
+                swiper2.params.slidesPerView = 6;  
+            }
+
+        
+            swiper2.update();
+        }
+
+       
+        window.addEventListener('resize', adjustSwiper);
+
+    
+        adjustSwiper();
+    </script>
 </script>
- <script>
-    var swiper2 = new Swiper(".mySwiper2", {
-            autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-        },
-      scrollbar: {
-        el: ".swiper-scrollbar",
-        hide: true,
-      },
-      slidesPerView: 6,
-      spaceBetween: 30,
-    });
-</script>
+
 </body>
 </html>
