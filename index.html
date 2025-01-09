@@ -14,12 +14,15 @@
             margin: 0;
             overflow: hidden;
             background-image: url(img/scene1.png);
+            background-repeat: no-repeat;
             max-width: 1920px;
+            height: 100%;
         }
+        
         .game-area {    
             position: relative;
             width: 100%;
-            height: 767px;
+            height: 800px;
             overflow: hidden;
         }
         .character {
@@ -67,6 +70,7 @@
         {width: 100%;height: 100%;}
         .swiper-slide .wrap > figure
         {width: 100%;height: 60%;position: relative;overflow: hidden;margin-top: 20px;background: #709188;padding-bottom: 5px;margin: 0 auto;}
+        
         .swiper-slide .wrap figure > img
         {background-size: cover;height: 100%;width: 700px;margin: 0 auto;overflow: hidden;display: flex;}
      
@@ -78,12 +82,12 @@
             height: 80%; 
             overflow: hidden; 
             transform: translate(-50%);
-        
+            
         }
 
         .swiper-slide .wrap figure span img {
             position: absolute; 
-            top: 0; 
+            top: 40px; 
             left: 50%;
             transform: translate(-50%, 0); 
             width:552px; 
@@ -107,7 +111,8 @@
         {width: 100%;height: 17vh;;display: flex;align-items: center;justify-content: center;flex-direction: column;}
         .info p{width: 70%;display: flex;font-size: 32px;align-items: center;justify-content: center;word-break: keep-all;}
         .info p:nth-child(2){width: 80%;margin-top: 10px;font-family: 'Pretendard-Regular';font-size: 20px;color: #7e7e7e;}
-        .info p:nth-child(2) span{font-size: 16px; color: red;margin-left: 5px;}
+        .info p span{font-size: 16px;margin-left: 5px;color: #7e7e7e;}
+        .info p span:nth-child(2){color: red;}
         .swiper-button-prev img{padding-left: 25px !important;}
         .swiper-button-prev:after
         {display: none;}
@@ -180,6 +185,9 @@
         .small{max-width: 160px;}
         
         
+        @media screen and (max-width: 1480px){
+           .wrap .info p{width: 100%;text-align: center;}          
+        }
         
         @media screen and (max-width: 1080px) {
             body{background-size: cover;}
@@ -212,14 +220,16 @@
             .character{width: 70px;height: 100px;background-size: cover;;}
             .swiper-slide .wrap a{width: 80% ; height: 100%;}
             .swiper-slide .wrap a img{max-width: 80%;z-index: 9999;}
-
+            .swiper-slide .wrap figure{height: auto;}   
             .swiper-slide .wrap figure > img{width: 100%;display: flex;align-items: center;justify-content: center;}
             
-            .swiper-slide .wrap figure span{width: 100%;display: flex;align-items: center;justify-content: center;}
+            .swiper-slide .wrap figure span{width: 98%;display: flex;align-items: center;justify-content: center;height: 70%;top: 9%;}
             .info{margin:3vh 0;height: auto;}
             .mySwiper2 .swiper-slide{width: 100%;}
             .mySwiper3 .swiper-slide{width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;;}    
             .mySwiper3 .swiper-slide img{background-size: cover ;height: 80%;}
+            .swiper-button-prev img{padding-left: 0 !important;}
+            
         }
           
                     
@@ -236,7 +246,7 @@
                 font-size: var(--def3);
             }    
             body > .title .before {
-                top: 31%;
+                top: 32.5%;
                 margin-top: 10px;
             }
             body > .title p{font-size: var(--def4);}
@@ -245,360 +255,397 @@
             .coin_box figure img{height: 50%;}
             .pipe,.character {width: 40px;height: 55px;bottom:0px}
             .game-area{height: 550px;}
+            .info p {display: block;width: 100%;}
+            .info p span{display: inline-block;width: 100%;}
+            .info p span:nth-child(2){font-size: var(--def5);}
+            .popup h2 > p{font-size: var(--def4);}
         }
 
+        @media screen and (max-width: 290px) {
+            .top_menu{
+                font-size: var(--def)
+            }
+            body > .title
+            {
+                max-width: 90%;
+                margin: auto;
+                font-size: var(--def4);
+            }    
+            body > .title .before {
+                top: 31%;
+                margin-top: 10px;
+            }
+            body > .title p{font-size: var(--def2);}
+            .info p:nth-child(2){width: 100%;display:block;;word-break: keep-all;}
+        }   
         
    </style>
 </head>
 <body>
-    <div class="speed" style="display: none;">
-        <a href="#" class="up"><img src="img/up.png" alt=""></a>
-        <a href="#" class="down"><img src="img/down.png" alt=""></a>
-    </div>
-    <ul class="top_menu">
-        <li class="baro_box" style="display: none;">
-            <a href="#" class="webb">
-                <i class="fa-brands fa-internet-explorer"></i>
-            </a>
-            <a href="#" class="banner">
-                <i class="fa-regular fa-folder-open"></i>   
-            </a>
-            <a href="#" class="s-kit">
-                <i class="fa-solid fa-gauge"></i>
-            </a>
-            
-        </li>
-        <li class="coin_box">
-            <figure><img src="img/coin.png" alt=""> X 28</figure>
-        </li>
-        <li class="reset"><a href="index.html">처음으로</a></li>
-    </ul>
-    <ul class="title title2">
-        <li>SOHYEON<br>
-            PORTFOLIO
-            <p>Insertcoin</p>
-        </li>
-        <li class="before">SOHYEON<br>
-            PORTFOLIO
-        </li>
-    </ul>
-    <div class="cloud_box">
-        <figure class="first">
-            <img src="img/cloud1.png" alt="">
-        </figure>
-        <figure class="last">
-            <img src="img/cloud2.png" alt="">
-        </figure>
-    </div>
-    <div class="game-area" id="gameArea">
-        <div class="character" id="character"></div>
-        <div class="stairs pipe" style="left: 80%; bottom: 0px;">
-            <img src="img/pipe.png" alt="">
+   
+        <div class="speed" style="display: none;">
+            <a href="#" class="up"><img src="img/up.png" alt=""></a>
+            <a href="#" class="down"><img src="img/down.png" alt=""></a>
         </div>
-        <div class="stairs" style="left: 630px; bottom: 9000px;"></div>
-        <div class="popup" id="popup" style="display: none;">
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                   <div class="wrap">
-                        <h2>web-page
-                            <p>닥터지</p>
-                        </h2>   
-                        <figure><img src="img/frame.png" alt="">
-                                <span>
-                                    <a href="https://choish2.github.io/Dr.g/" target="_blank">
-                                        <img src="img/웹/닥터지_1.jpeg" alt="">
-                                    </a>
-                                </span>
-                        </figure>     
-                        <div class="info">
-                            <p>
-                            편안하고 믿을 수 있는 이미지를 심기위해 주색을 푸른빛이 도는 초록색과 
-                            갈색으로 선정하였으며 여백을 넉넉히 잡아 보는이의 편의성을 높였습니다.</p>
-                            <p> 구현페이지:main,sub1(AI피부분석)  <span>*본인 기여도100%*</span></p>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="wrap">
-                        <h2>web-page
-                            <p>이솝</p>
-                        </h2>   
-                        <figure class="easop" style="background-color: #DAC4A8;"><img src="img/frame.png" alt="">
-                                <span>
-                                    <a href="https://choish2.github.io/aesop/" target="_blank">
-                                        <img src="img/웹/aesop.jpeg" alt="">
-                                    </a>
-                                </span>
-                        </figure>     
-                        <div class="info">
-                            <p>
-                            기존 사이트의 어색한부분을 삭제하고, 여백을 조정하여 리디자인 하였습니다.</p>
-                            <p> 구현페이지:main,sub1(로그인)  <span>*본인 기여도100%*</span></p>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="wrap">
-                        <h2>web-page
-                            <p>나이키</p>
-                        </h2>   
-                        <figure class="easop" style="background-color: #cdcdcd;"><img src="img/frame.png" alt="">
-                                <span>
-                                    <a href="https://choish2.github.io/nike/" target="_blank">
-                                        <img src="img/웹/나이키.png" alt="">
-                                    </a>
-                                </span>
-                        </figure>     
-                        <div class="info">
-                            <p>
-                                운동선수들을 위한 스포츠 기업이라는 점에서 착안하여 
-                                액티브하고 자유로운 느낌으로 리디자인 해 보았습니다.</p>
-                            <p> 구현페이지:main  <span>*본인 기여도100%*</span></p>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="wrap">
-                        <h2>web-page
-                            <p>인현수라간</p>
-                        </h2>   
-                        <figure  style="background-color: #FFF5E9"><img src="img/frame.png" alt="">
-                                <span>
-                                    <a href="https://choish2.github.io/inhyeon/" target="_blank">
-                                        <img src="img/웹/인현수라간.jpeg" alt="">
-                                    </a>
-                                </span>
-                        </figure>     
-                        <div class="info">
-                            <p>
-                                기존 웹사이트의 여백 교정, 상품이 좀더 보일 수 있게끔 구간을 나누어 보았습니다.</p>
-                            <p> 구현페이지:main,sub1,sub2(제품페이지+상세페이지 2가지)  <span>*본인 기여도100%*</span></p>
-                        </div>
-                    </div>
-                  </div>
-                  
-                  <div class="swiper-slide">
-                    <div class="wrap">
-                        <h2>web-page
-                            <p>알레르망</p>
-                        </h2>   
-                        <figure style="background-color: #C0D8F2;"><img src="img/frame.png" alt="">
-                                <span>
-                                    <a href="https://choish2.github.io/inhyeon/" target="_blank">
-                                        <img src="img/웹/알레르망_1.jpeg" alt="">
-                                    </a>
-                                </span>
-                        </figure>     
-                        <div class="info">
-                            <p>
-                                알레르망만의 장점을 한눈에 볼수있게 메인에 동영상을 배치해 보았으며, 깔끔한 느낌을 살려 리디자인 했습니다. </p>
-                            <p> 구현페이지:main,sub(로그인,회원가입,브랜드스토리 등등)  <span>*본인 기여도100%*</span></p>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="wrap">
-                        <h2>web-page
-                            <p>리더스동물의료원</p>
-                        </h2>   
-                        <figure style="background-color: #A93439;"><img src="img/frame.png" alt="">
-                                <span>
-                                    <a href="https://choish2.github.io/allerman/index.html" target="_blank">
-                                        <img src="img/웹/리더스동물의료원.jpeg" alt="">
-                                    </a>
-                                </span>
-                        </figure>     
-                        <div class="info">
-                            <p>
-                                24시간 진료한다는 점을 강조하고, 
-                                기존 사이트의 복잡했던 부분을 
-                                덜어내고 미니멀하게 디자인했습니다.</p>
-                            <p> 구현페이지:main, <span>*본인 기여도100%*</span></p>
-                        </div>
-                    </div>
-                  </div>
-
-                  <div class="swiper-slide">
-                    <div class="wrap">
-                        <h2>web-page
-                            <p>크몽</p>
-                        </h2>   
-                        <figure style="background-color: #FFD400;"><img src="img/frame.png" alt="">
-                                <span>
-                                    <a href="https://choish2.github.io/momm/" target="_blank">
-                                        <img src="img/웹/크몽_1.jpeg" alt="">
-                                    </a>
-                                </span>
-                        </figure>     
-                        <div class="info">
-                            <p>
-                                주색을 사용하여 사이트 특유의 느낌은 살리면서도 
-                                            미니멀하게 리디자인 해 보았습니다.
-                            </p>
-                            <p> 구현페이지:main,sub(상품상세,상세페이지는 인용) <span>*본인 기여도100%*</span></p>
-                        </div>
-                    </div>
-                  </div>
-
-                  <div class="swiper-slide">
-                    <div class="wrap">
-                        <h2>web-page
-                            <p>연합뉴스</p>
-                        </h2>   
-                        <figure style="background-color: #fafafa;"><img src="img/frame.png" alt="">
-                                <span>
-                                    <a href="https://choish2.github.io/news/index.html" target="_blank">
-                                        <img src="img/웹/연합뉴스_1.jpeg" alt="">
-                                    </a>
-                                </span>
-                        </figure>     
-                        <div class="info">
-                            <p>
-                                배너의 숫자를 줄이고 정렬을 중앙으로 하여 
-                                            가독성을 높여보았습니다.
-                            </p>
-                            <p> 구현페이지:main,sub(정치) <span>*본인 기여도100%*</span></p>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="wrap">
-                        <h2>web-page
-                            <p>케이스티파이</p>
-                        </h2>   
-                        <figure style="background-color:#3e3e3e;"><img src="img/frame.png" alt="">
-                                <span>
-                                    <a href="https://choish2.github.io/casetify/index.html" target="_blank">
-                                        <img src="img/웹/티파이_2.jpeg" alt="">
-                                    </a>
-                                </span>
-                        </figure>     
-                        <div class="info">
-                            <p>
-                                메인에는 제품컷, 하단에는 사용자 리뷰를 배치하고 콜라보를 많이한다는점을 살려 바로 볼 수 있는 버튼을 배치 해 보았습니다. 
-                            </p>
-                            <p> 구현페이지:main,sub(정치) <span>*본인 기여도100%*</span></p>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="swiper-button-next">
-                    <img src="img/next.png" alt="">
-                </div>
-                <div class="swiper-button-prev">
-                    <img src="img/prev.png" alt="">
-                </div>
-                <div class="exit">
-                    <span class="material-symbols-outlined close">
-                        close
-                        </span>
-                </div>
-              </div>              
-              
+        <ul class="top_menu">
+            <li class="baro_box" style="display: none;">
+                <a href="#" class="webb">
+                    <i class="fa-brands fa-internet-explorer"></i>
+                </a>
+                <a href="#" class="banner">
+                    <i class="fa-regular fa-folder-open"></i>   
+                </a>
+                <a href="#" class="s-kit">
+                    <i class="fa-solid fa-gauge"></i>
+                </a>
+                
+            </li>
+            <li class="coin_box">
+                <figure><img src="img/coin.png" alt=""> X 28</figure>
+            </li>
+            <li class="reset"><a href="index.html">처음으로</a></li>
+        </ul>
+        <ul class="title title2">
+            <li>SOHYEON<br>
+                PORTFOLIO
+                <p>Insertcoin</p>
+            </li>
+            <li class="before">SOHYEON<br>
+                PORTFOLIO
+            </li>
+        </ul>
+        <div class="cloud_box">
+            <figure class="first">
+                <img src="img/cloud1.png" alt="">
+            </figure>
+            <figure class="last">
+                <img src="img/cloud2.png" alt="">
+            </figure>
         </div>
-        
-        <div class="popup3" style="display: none;">
-            <div class="title title3">
-                <a href="#" class="pop2" style="background-color: #e1e1e1;">팝업/카드뉴스</a>
-                <a href="#" class="banner2">배너</a>
+        <div class="game-area" id="gameArea">
+            <div class="character" id="character"></div>
+            <div class="stairs pipe" style="left: 80%; bottom: 0px;">
+                <img src="img/pipe.png" alt="">
             </div>
-            <div class="swiper mySwiper3" style="display: none;">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide ">
-                    <img src="img/popup/pop1.png" alt="">
-                  </div>
-                  <div class="swiper-slide ">
-                    <img src="img/popup/pop2.png" alt="">
-                  </div>
-                  <div class="swiper-slide ">
-                    <img src="img/popup/pop3.png" alt="">
-                  </div>
-                  <div class="swiper-slide  ">
-                    <img src="img/popup/pop4.png" alt="">
-                  </div>
-                  <div class="swiper-slide" >
-                    <img src="img/popup/pop5.png" alt="">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="img/popup/pop11.png" alt="">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="img/popup/pop12.png" alt="">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="img/popup/pop8.png" alt="">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="img/popup/pop9.png" alt="">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="img/popup/pop13.png" alt="">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="img/popup/pop6.png" alt="">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="img/popup/pop7.png" alt="">
-                  </div>
-                  <div class="swiper-slide">
+            <div class="stairs" style="left: 630px; bottom: 9000px;"></div>
+            <div class="popup" id="popup" style="display: none;">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                    <div class="wrap">
+                            <h2>web-page
+                                <p>닥터지</p>
+                            </h2>   
+                            <figure><img src="img/frame.png" alt="">
+                                    <span>
+                                        <a href="https://choish2.github.io/Dr.g/" target="_blank">
+                                            <img src="img/웹/닥터지_1.jpeg" alt="">
+                                        </a>
+                                    </span>
+                            </figure>     
+                            <div class="info">
+                                <p>
+                                편안하고 믿을 수 있는 이미지를 심기위해 주색을 푸른빛이 도는 초록색과 
+                                갈색으로 선정하였으며 여백을 넉넉히 잡아 보는이의 편의성을 높였습니다.</p>
+                                <p> <span>구현페이지:main,sub1(AI피부분석)</span> 
+                                    <span>*본인 기여도100%*</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="wrap">
+                            <h2>web-page
+                                <p>이솝</p>
+                            </h2>   
+                            <figure class="easop" style="background-color: #DAC4A8;"><img src="img/frame.png" alt="">
+                                    <span>
+                                        <a href="https://choish2.github.io/aesop/" target="_blank">
+                                            <img src="img/웹/aesop.jpeg" alt="">
+                                        </a>
+                                    </span>
+                            </figure>     
+                            <div class="info">
+                                <p>
+                                기존 사이트의 어색한부분을 삭제하고, 여백을 조정하여 리디자인 하였습니다.</p>
+                                <p>
+                                    <span>구현페이지:main,login</span>
+                                    <span>*본인 기여도100%*</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="wrap">
+                            <h2>web-page
+                                <p>나이키</p>
+                            </h2>   
+                            <figure class="easop" style="background-color: #cdcdcd;"><img src="img/frame.png" alt="">
+                                    <span>
+                                        <a href="https://choish2.github.io/nike/" target="_blank">
+                                            <img src="img/웹/나이키.png" alt="">
+                                        </a>
+                                    </span>
+                            </figure>     
+                            <div class="info">
+                                <p>
+                                    운동선수들을 위한 스포츠 기업이라는 점에서 착안하여 
+                                    풀페이지로 보다 액티브하게 리디자인 해 보았습니다.</p>
+                                <p>
+                                    <span>구현페이지:main</span>  
+                                    <span>*본인 기여도100%*</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="wrap">
+                            <h2>web-page
+                                <p>인현수라간</p>
+                            </h2>   
+                            <figure  style="background-color: #FFF5E9"><img src="img/frame.png" alt="">
+                                    <span>
+                                        <a href="https://choish2.github.io/inhyeon/" target="_blank">
+                                            <img src="img/웹/인현수라간.jpeg" alt="">
+                                        </a>
+                                    </span>
+                            </figure>     
+                            <div class="info">
+                                <p>
+                                    기존 웹사이트의 여백 교정, 상품이 좀더 보일 수 있게끔 구간을 나누어 보았습니다.</p>
+                                <p> <span>구현페이지:main,sub1,sub2(제품페이지+상세페이지 2가지)</span>  <span>*본인 기여도100%*</span></p>
+                            </div>
+                        </div>
+                    </div>
                     
-                  </div>
+                    <div class="swiper-slide">
+                        <div class="wrap">
+                            <h2>web-page
+                                <p>알레르망</p>
+                            </h2>   
+                            <figure style="background-color: #C0D8F2;"><img src="img/frame.png" alt="">
+                                    <span>
+                                        <a href="https://choish2.github.io/inhyeon/" target="_blank">
+                                            <img src="img/웹/알레르망_1.jpeg" alt="">
+                                        </a>
+                                    </span>
+                            </figure>     
+                            <div class="info">
+                                <p>
+                                    알레르망만의 장점을 한눈에 볼수있게 메인에 동영상을 배치해 보았으며, 깔끔한 느낌을 살려 리디자인 했습니다. </p>
+                                <p> <span>구현페이지:main,sub(로그인,회원가입,브랜드스토리 등등)</span>  <span>*본인 기여도100%*</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="wrap">
+                            <h2>web-page
+                                <p>리더스동물의료원</p>
+                            </h2>   
+                            <figure style="background-color: #A93439;"><img src="img/frame.png" alt="">
+                                    <span>
+                                        <a href="https://choish2.github.io/allerman/index.html" target="_blank">
+                                            <img src="img/웹/리더스동물의료원.jpeg" alt="">
+                                        </a>
+                                    </span>
+                            </figure>     
+                            <div class="info">
+                                <p>
+                                    24시간 진료한다는 점을 강조하고, 
+                                    기존 사이트의 복잡했던 부분을 
+                                    덜어내고 미니멀하게 디자인했습니다.</p>
+                                <p> 
+                                    <span>구현페이지:main</span>
+                                    <span>*본인 기여도100%*</span></p>
+                            </div>
+                        </div>
+                    </div>
 
-                </div>
-                <div class="swiper-scrollbar"></div>
-              </div>
-            <div class="swiper mySwiper2" style="display: none;">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide small">
-                    <img src="img/banner/banner1.png" alt="">
-                  </div>
-                  <div class="swiper-slide small">
-                    <img src="img/banner/banner2.png" alt="">
-                  </div>
-                  <div class="swiper-slide small">
-                    <img src="img/banner/banner3.png" alt="">
-                  </div>
-                  <div class="swiper-slide small">
-                    <img src="img/banner/banner4.png" alt="">
-                  </div>
-                  <div class="swiper-slide small">
-                    <img src="img/banner/banner9.png" alt="">
-                  </div>
-                  <div class="swiper-slide small">
-                    <img src="img/banner/banner10.png" alt="">
-                  </div>
-                  
-                  <div class="swiper-slide small">
-                    <img src="img/banner/banner11.png" alt="">
-                  </div>
-                  <div class="swiper-slide small">
-                    <img src="img/banner/banner12.jpg" alt="">               
-                  </div>
-                  <div class="swiper-slide large">
-                    <img src="img/banner/banner5.png" alt="">
-                  </div>
-                  <div class="swiper-slide large">
-                    <img src="img/banner/banner6.png" alt="">
-                  </div>
-                  <div class="swiper-slide large">
-                    <img src="img/banner/banner7.jpg" alt="">
-                  </div>
-                  <div class="swiper-slide large">
-                    <img src="img/banner/banner8.png" alt="">
-                  </div>
-                  
-                </div>
-                <div class="swiper-scrollbar"></div>
-              </div>
+                    <div class="swiper-slide">
+                        <div class="wrap">
+                            <h2>web-page
+                                <p>크몽</p>
+                            </h2>   
+                            <figure style="background-color: #FFD400;"><img src="img/frame.png" alt="">
+                                    <span>
+                                        <a href="https://choish2.github.io/momm/" target="_blank">
+                                            <img src="img/웹/크몽_1.jpeg" alt="">
+                                        </a>
+                                    </span>
+                            </figure>     
+                            <div class="info">
+                                <p>
+                                    주색을 사용하여 사이트 특유의 느낌은 살리면서도 
+                                                미니멀하게 리디자인 해 보았습니다.
+                                </p>
+                                <p> 
+                                    <span>구현페이지:main,sub(상품상세)</span>
+                                    <span>*본인 기여도100%*</span></p>
+                            </div>
+                        </div>
+                    </div>
 
-         
-              <div class="exit">
-                <span class="material-symbols-outlined close">close</span>
+                    <div class="swiper-slide">
+                        <div class="wrap">
+                            <h2>web-page
+                                <p>연합뉴스</p>
+                            </h2>   
+                            <figure style="background-color: #fafafa;"><img src="img/frame.png" alt="">
+                                    <span>
+                                        <a href="https://choish2.github.io/news/index.html" target="_blank">
+                                            <img src="img/웹/연합뉴스_1.jpeg" alt="">
+                                        </a>
+                                    </span>
+                            </figure>     
+                            <div class="info">
+                                <p>
+                                    배너의 숫자를 줄이고 정렬을 중앙으로 하여 
+                                                가독성을 높여보았습니다.
+                                </p>
+                                <p> 
+                                    <span>구현페이지:main,sub(정치)</span>
+                                    <span>*본인 기여도100%*</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="wrap">
+                            <h2>web-page
+                                <p>케이스티파이</p>
+                            </h2>   
+                            <figure style="background-color:#3e3e3e;"><img src="img/frame.png" alt="">
+                                    <span>
+                                        <a href="https://choish2.github.io/casetify/index.html" target="_blank">
+                                            <img src="img/웹/티파이_2.jpeg" alt="">
+                                        </a>
+                                    </span>
+                            </figure>     
+                            <div class="info">
+                                <p>
+                                    메인에는 제품컷, 하단에는 사용자 리뷰를 배치하고 콜라보를 많이한다는점을 살려 바로 볼 수 있는 버튼을 배치 해 보았습니다. 
+                                </p>
+                                <p> 
+                                    <span>구현페이지:main,sub(제품페이지)</span>
+                                    <span>*본인 기여도100%*</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="swiper-button-next">
+                        <img src="img/next.png" alt="">
+                    </div>
+                    <div class="swiper-button-prev">
+                        <img src="img/prev.png" alt="">
+                    </div>
+                    <div class="exit">
+                        <span class="material-symbols-outlined close">
+                            close
+                            </span>
+                    </div>
+                </div>              
+                
             </div>
-        </div>  
-    
+            
+            <div class="popup3" style="display: none;">
+                <div class="title title3">
+                    <a href="#" class="pop2" style="background-color: #e1e1e1;">팝업/카드뉴스</a>
+                    <a href="#" class="banner2">배너</a>
+                </div>
+                <div class="swiper mySwiper3" style="display: none;">
+                    <div class="swiper-wrapper">
+                    <div class="swiper-slide ">
+                        <img src="img/popup/pop1.png" alt="">
+                    </div>
+                    <div class="swiper-slide ">
+                        <img src="img/popup/pop2.png" alt="">
+                    </div>
+                    <div class="swiper-slide ">
+                        <img src="img/popup/pop3.png" alt="">
+                    </div>
+                    <div class="swiper-slide  ">
+                        <img src="img/popup/pop4.png" alt="">
+                    </div>
+                    <div class="swiper-slide" >
+                        <img src="img/popup/pop5.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/popup/pop11.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/popup/pop12.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/popup/pop8.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/popup/pop9.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/popup/pop13.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/popup/pop6.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/popup/pop7.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        
+                    </div>
+
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+                <div class="swiper mySwiper2" style="display: none;">
+                    <div class="swiper-wrapper">
+                    <div class="swiper-slide small">
+                        <img src="img/banner/banner1.png" alt="">
+                    </div>
+                    <div class="swiper-slide small">
+                        <img src="img/banner/banner2.png" alt="">
+                    </div>
+                    <div class="swiper-slide small">
+                        <img src="img/banner/banner3.png" alt="">
+                    </div>
+                    <div class="swiper-slide small">
+                        <img src="img/banner/banner4.png" alt="">
+                    </div>
+                    <div class="swiper-slide small">
+                        <img src="img/banner/banner9.png" alt="">
+                    </div>
+                    <div class="swiper-slide small">
+                        <img src="img/banner/banner10.png" alt="">
+                    </div>
+                    
+                    <div class="swiper-slide small">
+                        <img src="img/banner/banner11.png" alt="">
+                    </div>
+                    <div class="swiper-slide small">
+                        <img src="img/banner/banner12.jpg" alt="">               
+                    </div>
+                    <div class="swiper-slide large">
+                        <img src="img/banner/banner5.png" alt="">
+                    </div>
+                    <div class="swiper-slide large">
+                        <img src="img/banner/banner6.png" alt="">
+                    </div>
+                    <div class="swiper-slide large">
+                        <img src="img/banner/banner7.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide large">
+                        <img src="img/banner/banner8.png" alt="">
+                    </div>
+                    
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+
+            
+                <div class="exit">
+                    <span class="material-symbols-outlined close">close</span>
+                </div>
+            </div>  
+      
+    </div>  
 
     <script src="script/jquery-3.7.1.js"></script>
     <script src="script/action.js"></script>

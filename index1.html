@@ -103,12 +103,7 @@
         {text-align: center;font-size: 36px;}
         .popup h2 p {font-size: 50px;display: flex;align-items: center;justify-content: center;padding-top: 20px;}
         
-        .quest {
-            position: absolute;
-            width: 78px;
-            height: 74px;
-            left: 74px;
-        }
+        
         .wrap
         {width: 100%;height: 100%;}
         .swiper-slide .wrap figure
@@ -153,7 +148,7 @@
         {width: 100%;height: 17vh;;display: flex;align-items: center;justify-content: center;flex-direction: column;}
         .info p{width: 70%;display: flex;font-size: 32px;align-items: center;justify-content: center;word-break: keep-all;}
         .info p:nth-child(2){width: 80%;margin-top: 10px;font-family: 'Pretendard-Regular';font-size: 20px;color: #7e7e7e;}
-        .info p:nth-child(2) span{font-size: 16px; color: red;margin-left: 5px;}
+        .info p span:nth-child(2) {font-size: 16px; color: red;margin-left: 5px;}
         .swiper-button-prev img{padding-left: 25px !important;}
         .swiper-button-prev:after
         {display: none;}
@@ -229,6 +224,10 @@
         .stitle
         {text-align: center;;background: #fff;width: 100%;height: 50px;display: flex;align-items: center;justify-content: center;}
        
+        @media screen and (max-width: 1480px){
+           .wrap .info p{width: 100%;text-align: center;}  
+                   
+        }
         
         @media screen and (max-width: 1080px) {
             body{background-size: cover;}
@@ -261,19 +260,24 @@
             .character{width: 70px;height: 100px;background-size: cover;;}
             .swiper-slide .wrap a{width: 80% ; height: 100%;}
             .swiper-slide .wrap a img{max-width: 80%;z-index: 9999;}
-
+            .swiper-slide .wrap figure{height: auto;}   
             .swiper-slide .wrap figure > img{width: 100%;display: flex;align-items: center;justify-content: center;}
             
-            .swiper-slide .wrap figure span{width: 100%;display: flex;align-items: center;justify-content: center;}
+            .swiper-slide .wrap figure span{width: 98%;display: flex;align-items: center;justify-content: center;height: 70%;top: 9%;}
             .info{margin:3vh 0;height: auto;}
-            .mySwiper2 .swiper-slide{height: 100%;}
+            .mySwiper2 .swiper-slide{width: 100%;}
             .mySwiper3 .swiper-slide{width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;;}    
             .mySwiper3 .swiper-slide img{background-size: cover ;height: 80%;}
+            .swiper-button-prev img{padding-left: 0 !important;}
+            .game-area .stairs {bottom: 150px !important;}
+            .stairs > figure img {max-width: 180px;}
         }
           
                     
 
         @media screen and (max-width: 600px) {
+          
+            body{background-size: cover;background-image: url(img/768_1.png);}
             .top_menu{
                 font-size: var(--def2)
             }
@@ -287,12 +291,37 @@
                 top: 32.5%;
                 margin-top: 10px;
             }
-            body > .title p{font-size: var(--def2);}
+            body > .title p{font-size: var(--def4);}
             .top_menu li{width: 30%;}   
             .top_menu .baro_box{width: 33%;gap: 3px;}
             .coin_box figure img{height: 50%;}
+            .pipe,.character {width: 40px;height: 55px;bottom:0px}
+            .game-area{height: 550px;}
+            .info p {display: block;width: 100%;}
+            .info p span{display: inline-block;width: 100%;}
+            .info p span:nth-child(2){font-size: var(--def5);}
+            .popup h2 > p{font-size: var(--def4);}
         }
 
+        @media screen and (max-width: 290px) {
+            .top_menu{
+                font-size: var(--def)
+            }
+            body > .title
+            {
+                max-width: 90%;
+                margin: auto;
+                font-size: var(--def4);
+            }    
+            body > .title .before {
+                top: 31%;
+                margin-top: 10px;
+            }
+            body > .title p{font-size: var(--def2);}
+            .info p:nth-child(2){width: 100%;display:block;;word-break: keep-all;}
+        }   
+        
+       
     </style>
 </head>
 <body>
@@ -334,7 +363,7 @@
         <div class="character" id="character"></div>
         <div class="stairs" style="left: 10%; bottom: 230px;">
             <figure><img src="img/block-2.png" alt=""></figure>
-            <figure class="quest"><img src="img/ques.png" alt=""></figure>
+         
         </div>
         <div class="pipe" id="pipe" style="left: 80%; bottom: 5px;">
            <img src="img/pipe.png" alt="">
@@ -358,7 +387,9 @@
                             <p>
                             편안하고 믿을 수 있는 이미지를 심기위해 주색을 푸른빛이 도는 초록색과 
                             갈색으로 선정하였으며 여백을 넉넉히 잡아 보는이의 편의성을 높였습니다.</p>
-                            <p> 구현페이지:main,sub1(AI피부분석)  <span>*본인 기여도100%*</span></p>
+                            <p> 
+                                <span>구현페이지:main,sub1(AI피부분석)</span>
+                                <span>*본인 기여도100%*</span></p>
                         </div>
                     </div>
                   </div>
@@ -377,7 +408,8 @@
                         <div class="info">
                             <p>
                             기존 사이트의 어색한부분을 삭제하고, 여백을 조정하여 리디자인 하였습니다.</p>
-                            <p> 구현페이지:main,sub1(로그인)  <span>*본인 기여도100%*</span></p>
+                            <p> 
+                                <span>구현페이지:main,sub1(로그인)</span>  <span>*본인 기여도100%*</span></p>
                         </div>
                     </div>
                   </div>
@@ -397,7 +429,9 @@
                             <p>
                                 운동선수들을 위한 스포츠 기업이라는 점에서 착안하여 
                                 액티브하고 자유로운 느낌으로 리디자인 해 보았습니다.</p>
-                            <p> 구현페이지:main  <span>*본인 기여도100%*</span></p>
+                            <p>  <span>구현페이지:main</span>  
+                                  <span>*본인 기여도100%*</span>
+                                </p>
                         </div>
                     </div>
                   </div>
@@ -416,7 +450,8 @@
                         <div class="info">
                             <p>
                                 기존 웹사이트의 여백 교정, 상품이 좀더 보일 수 있게끔 구간을 나누어 보았습니다.</p>
-                            <p> 구현페이지:main,sub1,sub2(제품페이지+상세페이지 2가지)  <span>*본인 기여도100%*</span></p>
+                            <p> <span>구현페이지:main,sub1,sub2(제품페이지+상세페이지 2가지)</span>  
+                                <span>*본인 기여도100%*</span></p>
                         </div>
                     </div>
                   </div>
@@ -436,7 +471,8 @@
                         <div class="info">
                             <p>
                                 알레르망만의 장점을 한눈에 볼수있게 메인에 동영상을 배치해 보았으며, 깔끔한 느낌을 살려 리디자인 했습니다. </p>
-                            <p> 구현페이지:main,sub(로그인,회원가입,브랜드스토리 등등)  <span>*본인 기여도100%*</span></p>
+                            <p> <span>구현페이지:main,sub(로그인,회원가입,브랜드스토리 등등)</span>
+                                <span>*본인 기여도100%*</span></p>
                         </div>
                     </div>
                   </div>
@@ -457,7 +493,7 @@
                                 24시간 진료한다는 점을 강조하고, 
                                 기존 사이트의 복잡했던 부분을 
                                 덜어내고 미니멀하게 디자인했습니다.</p>
-                            <p> 구현페이지:main, <span>*본인 기여도100%*</span></p>
+                            <p> <span>구현페이지:main,</span> <span>*본인 기여도100%*</span></p>
                         </div>
                     </div>
                   </div>
@@ -479,7 +515,7 @@
                                 주색을 사용하여 사이트 특유의 느낌은 살리면서도 
                                             미니멀하게 리디자인 해 보았습니다.
                             </p>
-                            <p> 구현페이지:main,sub(상품상세,상세페이지는 인용) <span>*본인 기여도100%*</span></p>
+                            <p> <span>구현페이지:main,sub(상품상세,상세페이지는 인용)</span> <span>*본인 기여도100%*</span></p>
                         </div>
                     </div>
                   </div>
@@ -501,7 +537,7 @@
                                 배너의 숫자를 줄이고 정렬을 중앙으로 하여 
                                             가독성을 높여보았습니다.
                             </p>
-                            <p> 구현페이지:main,sub(정치) <span>*본인 기여도100%*</span></p>
+                            <p> <span>구현페이지:main,sub(정치)</span> <span>*본인 기여도100%*</span></p>
                         </div>
                     </div>
                   </div>
@@ -521,7 +557,7 @@
                             <p>
                                 메인에는 제품컷, 하단에는 사용자 리뷰를 배치하고 콜라보를 많이한다는점을 살려 바로 볼 수 있는 버튼을 배치 해 보았습니다. 
                             </p>
-                            <p> 구현페이지:main,sub(정치) <span>*본인 기여도100%*</span></p>
+                            <p> <span>구현페이지:main,sub(제품)</span> <span>*본인 기여도100%*</span></p>
                         </div>
                     </div>
                   </div>

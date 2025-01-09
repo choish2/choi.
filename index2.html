@@ -37,6 +37,7 @@
             overflow: hidden;
             background-image: url(img/scene3.png);
             width: 100%;
+            height: 100%;
         }
         .game-area {    
             position: relative;
@@ -278,8 +279,10 @@
         .stitle
         {text-align: center;;background: #fff;width: 100%;height: 50px;display: flex;align-items: center;justify-content: center;}
         .small{max-width: 160px;}
-        
-        
+        @media screen and (max-width: 1480px){
+           .wrap .info p{width: 100%;text-align: center;}  
+                   
+        }
         
         @media screen and (max-width: 1080px) {
             body{background-size: cover;}
@@ -312,19 +315,24 @@
             .character{width: 70px;height: 100px;background-size: cover;;}
             .swiper-slide .wrap a{width: 80% ; height: 100%;}
             .swiper-slide .wrap a img{max-width: 80%;z-index: 9999;}
-
+            .swiper-slide .wrap figure{height: auto;}   
             .swiper-slide .wrap figure > img{width: 100%;display: flex;align-items: center;justify-content: center;}
             
-            .swiper-slide .wrap figure span{width: 100%;display: flex;align-items: center;justify-content: center;}
+            .swiper-slide .wrap figure span{width: 98%;display: flex;align-items: center;justify-content: center;height: 70%;top: 9%;}
             .info{margin:3vh 0;height: auto;}
             .mySwiper2 .swiper-slide{width: 100%;}
             .mySwiper3 .swiper-slide{width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;;}    
             .mySwiper3 .swiper-slide img{background-size: cover ;height: 80%;}
+            .swiper-button-prev img{padding-left: 0 !important;}
+            .game-area .stairs {bottom: 150px !important;}
+            .stairs > figure img {max-width: 180px;}
         }
           
                     
 
         @media screen and (max-width: 600px) {
+          
+            body{background-size: cover;background-image: url(img/768_1.png);}
             .top_menu{
                 font-size: var(--def2)
             }
@@ -338,12 +346,39 @@
                 top: 32.5%;
                 margin-top: 10px;
             }
-            body > .title p{font-size: var(--def2);}
+            body > .title p{font-size: var(--def4);}
             .top_menu li{width: 30%;}   
             .top_menu .baro_box{width: 33%;gap: 3px;}
             .coin_box figure img{height: 50%;}
+            .pipe,.character {width: 40px;height: 55px;bottom:0px}
+            .game-area{height: 550px;}
+            .info p {display: block;width: 100%;}
+            .info p span{display: inline-block;width: 100%;}
+            .info p span:nth-child(2){font-size: var(--def5);}
+            .popup h2 > p{font-size: var(--def4);}
+            body .game-area .item{left: 50% !important ; bottom: 10% !important;width: 50px; height: 50px; }
         }
 
+        @media screen and (max-width: 290px) {
+            .top_menu{
+                font-size: var(--def)
+            }
+            body > .title
+            {
+                max-width: 90%;
+                margin: auto;
+                font-size: var(--def4);
+            }    
+            body > .title .before {
+                top: 31%;
+                margin-top: 10px;
+            }
+            body > .title p{font-size: var(--def2);}
+            .info p:nth-child(2){width: 100%;display:block;;word-break: keep-all;}
+          
+        }   
+
+      
     </style>
 </head>
 <body>
@@ -368,7 +403,7 @@
           
         </li>
         <li class="coin_box">
-            <figure><img src="img/coin.png" alt=""> X 28</figure>
+            <figure><img src="img/coin.png" alt=""> X 27</figure>
         </li>
         <li class="reset"><a href="index.html">처음으로</a></li>
     </ul>
